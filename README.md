@@ -185,8 +185,16 @@ spring-music                      create succeeded
 ```
 </details>
 
-#### New Relic インスタンスのサービスキー作成
+### New Relic インスタンスのサービスキー作成
+作成したサービスインスタンスにの New Relic のライセンスキー情報を反映します。
+Apps Manager 上で New Relic のサービスインスタンスを見つけ、サービスキーを作成する事でライセンスキーを反映することができます。
 
+#### Apps Manager へアクセス
+まず、ブラウザから Apps Manager にアクセスします。
+
+- [Apps Manager - https://console.run.pivotal.io](https://console.run.pivotal.io)
+
+#### サービスキー作成
 ![apm-create-key](images/apm-create-key.png)
 
 ![apm-key](images/apm-key.png)
