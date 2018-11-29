@@ -211,10 +211,48 @@ New Relic APM 画面にバインドしておいたアプリケーションが表
 
 ![newrelic-apm](images/newrelic-apm.png)
 
+### 
+
+![](images/apm-info.png)
+
+![](images/apm-overview.png)
+![](images/apm-overview2.png)
+
+![](images/apm-servicemap.png)
+
+![](images/apm-transaction.png)
+
+![](images/apm-database.png)
+
+![](images/apm-external.png)
+
+![](images/apm-jvm1.png)
+![](images/apm-jvm2.png)
+![](images/apm-jvm3.png)
+
+![](images/apm-events-error.png)
+
+![](images/apm-reports-scalability.png)
+
+
+
 #### データベース接続構成のモニタリング
 
 ##### データベースインスタンスの作成
+PostgreSQL インスタンスを作成します。
+`$ cf create-service elephantsql turtle <サービスインスタンス名>` で作成を行います。
+
+```
+$ cf create-service elephantsql turtle hello-elephant
+```
 ##### データベースインスタンスとアプリケーションのバインド
+
+```
+$ cf bind-service spring-music hello-elephant
+$ cf restage spring-music
+```
+![](images/apm-postgres.png)
+![](images/apm-postgres2.png)
 
 
 ## まとめ / 振り返り
