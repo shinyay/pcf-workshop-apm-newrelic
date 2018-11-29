@@ -194,6 +194,13 @@ Apps Manager 上で New Relic のサービスインスタンスを見つけ、�
 
 - [Apps Manager - https://console.run.pivotal.io](https://console.run.pivotal.io)
 
+使用しているスペース (ここでは `development`) を選択し `Service` タブをクリックします。
+すると、以下のように サービス一覧の中に New Relic のサービスインスタンスが確認できます。
+
+![service-newrelic](images/pws-service.png)
+
+
+
 #### サービスキー作成
 ![apm-create-key](images/apm-create-key.png)
 
