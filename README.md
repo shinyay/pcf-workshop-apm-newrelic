@@ -68,7 +68,7 @@ $ cf push --no-start
 ```
 
 ### Pivotal Services Marketplace の利用
-Pivotal Services Marketplace で提供されるサービスを使用します。
+**Pivotal Services Marketplace** で提供されるサービスを利用して **New Relic** を使用します。
 
 #### サービスの一覧
 `cf marketplace` コマンドで利用可能なサービス一覧を表示します。
@@ -120,11 +120,12 @@ streamdata                    spring, creek*, brook*                            
 
 ### New Relic インスタンスの準備
 
-#### New Relic インスタンスの作成
+**Marketpacle** で提供されるサービスは、使用するプランを選択して、サービスインスタンスを作成してから使用します。
+また、そのサービスインスタンスがどのデプロイされているアプリケーションから使用されるかを定義するため、 **バインド** 操作と呼ばれるアプリケーションとの関連付けを行います。
 
-```
-$ cf create-service newrelic lite <サービスインスタンス名>
-```
+#### New Relic インスタンスの作成
+New Relic のサービスインスタンスを作成するには、
+`$ cf create-service newrelic lite <サービスインスタンス名>` を実行します。
 
 <details><summary>実行結果</summary>
 
@@ -137,8 +138,9 @@ OK
 </details>
 
 #### New Relic インスタンスとアプリケーションのバインド
-アプリケーションとサービスインスタンスのバインドには、`$ cf bind-service <アプリケーション名> <サービスインスタンスインスタンス名>
-` を使用します。
+アプリケーションとサービスインスタンスのバインドには、
+`$ cf bind-service <アプリケーション名> <サービスインスタンスインスタンス名>
+` を実行します。
 
 ```
 $ cf bind-service spring-music hello-newrelic
@@ -146,6 +148,7 @@ $ cf bind-service spring-music hello-newrelic
 
 #### アプリケーションの開始
 停止していたアプリケーションを起動します。
+予め停止していたため、この初回起動時にバインド舌サービスの情報を反映位した状態で起動されます。
 
 ```
 $ cf start spring-music
