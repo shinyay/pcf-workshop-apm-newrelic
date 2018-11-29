@@ -61,107 +61,11 @@ total 92304
 ビルドしたアプリケーションを Pivotal Cloud Foundry へデプロイします。
 
 アプリケーションのデプロイは、以下のコマンドを使用します。
+`--no-start` オプションをつけて起動しないようにしておきます。
 
 ```
-$ cf push
+$ cf push --no-start
 ```
-
-<details><summary>実行結果</summary>
-
-```
-syanagihara@pivotal.io としてマニフェストから組織 syanagihara-org / スペース development にプッシュしています...
-マニフェスト・ファイル /Users/shinyay/workspace/workshop/spring-music/manifest.yml を使用しています
-アプリ情報を取得しています...
-これらの属性でアプリを作成しています...
-+ 名前:       spring-music
-  パス:       /Users/shinyay/workspace/workshop/spring-music/build/libs/spring-music-1.0.jar
-+ メモリー:   1G
-  経路:
-+   spring-music-turbulent-ostrich.cfapps.io
-
-アプリ spring-music を作成しています...
-経路をマップしています...
-ローカル・ファイルをリモート・キャッシュと比較しています...
-Packaging files to upload...
-ファイルをアップロードしています...
- 517.77 KiB / 517.77 KiB [==========================================================================================================================================================================================================================================] 100.00% 2s
-
-API がファイルの処理を完了するのを待機しています...
-
-アプリをステージングし、ログをトレースしています...
-   Downloading dotnet_core_buildpack_beta...
-   Downloading dotnet_core_buildpack...
-   Downloading java_buildpack...
-   Downloading staticfile_buildpack...
-   Downloading python_buildpack...
-   Downloaded dotnet_core_buildpack
-   Downloading ruby_buildpack...
-   Downloaded staticfile_buildpack
-   Downloading nodejs_buildpack...
-   Downloaded java_buildpack
-   Downloaded ruby_buildpack
-   Downloading php_buildpack...
-   Downloaded nodejs_buildpack
-   Downloading go_buildpack...
-   Downloaded dotnet_core_buildpack_beta
-   Downloading binary_buildpack...
-   Downloaded python_buildpack
-   Downloaded binary_buildpack
-   Downloaded php_buildpack
-   Downloaded go_buildpack
-   Cell e222f891-b602-4a15-9b26-fd45771f60ad creating container for instance f6000a29-7bb2-46fb-b4e5-13c293f9686c
-   Cell e222f891-b602-4a15-9b26-fd45771f60ad successfully created container for instance f6000a29-7bb2-46fb-b4e5-13c293f9686c
-   Downloading app package...
-   Downloaded app package (40.6M)
-   -----> Java Buildpack v4.16.1 (offline) | https://github.com/cloudfoundry/java-buildpack.git#41b8ff8
-   -----> Downloading Jvmkill Agent 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/jvmkill/trusty/x86_64/jvmkill-1.16.0_RELEASE.so (found in cache)
-   -----> Downloading Open Jdk JRE 1.8.0_192 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_192.tar.gz (found in cache)
-          Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.1s)
-          JVM DNS caching disabled in lieu of BOSH DNS caching
-   -----> Downloading Open JDK Like Memory Calculator 3.13.0_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-3.13.0_RELEASE.tar.gz (found in cache)
-          Loaded Classes: 19546, Threads: 250
-   -----> Downloading Client Certificate Mapper 1.8.0_RELEASE from https://java-buildpack.cloudfoundry.org/client-certificate-mapper/client-certificate-mapper-1.8.0_RELEASE.jar (found in cache)
-   -----> Downloading Container Security Provider 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-security-provider/container-security-provider-1.16.0_RELEASE.jar (found in cache)
-   -----> Downloading Spring Auto Reconfiguration 2.5.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-2.5.0_RELEASE.jar (found in cache)
-   Exit status 0
-   Uploading droplet, build artifacts cache...
-   Uploading build artifacts cache...
-   Uploading droplet...
-   Uploaded build artifacts cache (129B)
-   Uploaded droplet (87.3M)
-   Uploading complete
-   Cell e222f891-b602-4a15-9b26-fd45771f60ad stopping instance f6000a29-7bb2-46fb-b4e5-13c293f9686c
-   Cell e222f891-b602-4a15-9b26-fd45771f60ad destroying container for instance f6000a29-7bb2-46fb-b4e5-13c293f9686c
-
-アプリが開始するのを待機しています...
-
-名前:                   spring-music
-要求された状態:         started
-経路:                   spring-music-turbulent-ostrich.cfapps.io
-最終アップロード日時:   Wed 28 Nov 17:13:26 JST 2018
-スタック:               cflinuxfs2
-ビルドパック:           client-certificate-mapper=1.8.0_RELEASE container-security-provider=1.16.0_RELEASE java-buildpack=v4.16.1-offline-https://github.com/cloudfoundry/java-buildpack.git#41b8ff8 java-main java-opts java-security jvmkill-agent=1.16.0_RELEASE
-                        open-jd...
-
-タイプ:           web
-インスタンス:     1/1
-メモリー使用量:   1024M
-開始コマンド:     JAVA_OPTS="-agentpath:$PWD/.java-buildpack/open_jdk_jre/bin/jvmkill-1.16.0_RELEASE=printHeapHistogram=1 -Djava.io.tmpdir=$TMPDIR -Djava.ext.dirs=$PWD/.java-buildpack/container_security_provider:$PWD/.java-buildpack/open_jdk_jre/lib/ext
-                  -Djava.security.properties=$PWD/.java-buildpack/java_security/java.security $JAVA_OPTS" && CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-3.13.0_RELEASE -totMemory=$MEMORY_LIMIT -loadedClasses=20325
-                  -poolType=metaspace -stackThreads=250 -vmOptions="$JAVA_OPTS") && echo JVM Memory Configuration: $CALCULATED_MEMORY && JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY" && MALLOC_ARENA_MAX=2 SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java
-                  $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher
-     状態   開始日時               cpu    メモリー           ディスク           詳細
-#0   実行   2018-11-28T08:13:54Z   0.0%   1G の中の 104.5M   1G の中の 170.8M
-
-```
-</details>
-
-`経路` に表示される URI にアクセスします。
-
-上記例の場合、`http://pring-music-turbulent-ostrich.cfapps.io` にアクセスします。
-以下のような画面が表示される事が確認できます。
-
-![spring-music](images/spring-music.png)
 
 ### Pivotal Services Marketplace の利用
 Pivotal Services Marketplace で提供されるサービスを使用します。
@@ -233,104 +137,22 @@ OK
 </details>
 
 #### New Relic インスタンスとアプリケーションのバインド
-アプリケーションとサービスインスタンスのバインドには、以下のコマンドを使用します。
-
-```
-$ cf bind-service <アプリケーション名> <サービスインスタンスインスタンス名>
-```
+アプリケーションとサービスインスタンスのバインドには、`$ cf bind-service <アプリケーション名> <サービスインスタンスインスタンス名>
+` を使用します。
 
 ```
 $ cf bind-service spring-music hello-newrelic
-$ cf restage spring-music
 ```
 
-<details><summary>実行結果</summary>
+#### アプリケーションの開始
+停止していたアプリケーションを起動します。
 
 ```
-$ cf bind-service spring-music hello-newrelic
-
-syanagihara@pivotal.io としてサービス hello-newrelic を組織 syanagihara-org / スペース development 内のアプリ spring-music にバインドしています...
-OK
-
-$ cf restage spring-music
-
-syanagihara@pivotal.io として組織 syanagihara-org / スペース development 内のアプリ spring-music を再ステージングしています...
-
-アプリをステージングし、ログをトレースしています...
-   Downloading dotnet_core_buildpack_beta...
-   Downloading staticfile_buildpack...
-   Downloading java_buildpack...
-   Downloading ruby_buildpack...
-   Downloading dotnet_core_buildpack...
-   Downloaded ruby_buildpack
-   Downloading nodejs_buildpack...
-   Downloaded staticfile_buildpack
-   Downloading go_buildpack...
-   Downloaded java_buildpack
-   Downloading python_buildpack...
-   Downloaded dotnet_core_buildpack_beta
-   Downloading php_buildpack...
-   Downloaded nodejs_buildpack
-   Downloading binary_buildpack...
-   Downloaded dotnet_core_buildpack
-   Downloaded php_buildpack
-   Downloaded go_buildpack
-   Downloaded python_buildpack
-   Downloaded binary_buildpack
-   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 creating container for instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
-   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 successfully created container for instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
-   Downloading app package...
-   Downloading build artifacts cache...
-   Downloaded build artifacts cache (131B)
-   Downloaded app package (40.6M)
-   -----> Java Buildpack v4.16.1 (offline) | https://github.com/cloudfoundry/java-buildpack.git#41b8ff8
-   -----> Downloading Jvmkill Agent 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/jvmkill/trusty/x86_64/jvmkill-1.16.0_RELEASE.so (found in cache)
-   -----> Downloading Open Jdk JRE 1.8.0_192 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_192.tar.gz (found in cache)
-          Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.3s)
-          JVM DNS caching disabled in lieu of BOSH DNS caching
-   -----> Downloading Open JDK Like Memory Calculator 3.13.0_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-3.13.0_RELEASE.tar.gz (found in cache)
-          Loaded Classes: 19546, Threads: 250
-   -----> Downloading Client Certificate Mapper 1.8.0_RELEASE from https://java-buildpack.cloudfoundry.org/client-certificate-mapper/client-certificate-mapper-1.8.0_RELEASE.jar (found in cache)
-   -----> Downloading Container Security Provider 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-security-provider/container-security-provider-1.16.0_RELEASE.jar (found in cache)
-   -----> Downloading New Relic Agent 4.7.0 from https://download.run.pivotal.io/new-relic/new-relic-4.7.0.jar (found in cache)
-   -----> Downloading Spring Auto Reconfiguration 2.5.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-2.5.0_RELEASE.jar (found in cache)
-   Exit status 0
-   Uploading droplet, build artifacts cache...
-   Uploading build artifacts cache...
-   Uploading droplet...
-   Uploaded build artifacts cache (131B)
-   Uploaded droplet (96.5M)
-   Uploading complete
-   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 stopping instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
-   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 destroying container for instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
-
-アプリが開始するのを待機しています...
-
-名前:                   spring-music
-要求された状態:         started
-経路:                   spring-music-accountable-kookaburra.cfapps.io
-最終アップロード日時:   Thu 29 Nov 16:08:26 JST 2018
-スタック:               cflinuxfs2
-ビルドパック:           client-certificate-mapper=1.8.0_RELEASE container-security-provider=1.16.0_RELEASE java-buildpack=v4.16.1-offline-https://github.com/cloudfoundry/java-buildpack.git#41b8ff8 java-main java-opts java-security
-                        jvmkill-agent=1.16.0_RELEASE new-rel...
-
-タイプ:           web
-インスタンス:     1/1
-メモリー使用量:   1024M
-開始コマンド:     JAVA_OPTS="-agentpath:$PWD/.java-buildpack/open_jdk_jre/bin/jvmkill-1.16.0_RELEASE=printHeapHistogram=1 -Djava.io.tmpdir=$TMPDIR -Dnewrelic.config.log_file_name=STDOUT
-                  -Dnewrelic.config.license_key=examplexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -Dnewrelic.config.app_name=spring-music -Dnewrelic.config.licenseKey=examplexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                  -javaagent:$PWD/.java-buildpack/new_relic_agent/new_relic_agent-4.7.0.jar -Dnewrelic.home=$PWD/.java-buildpack/new_relic_agent -Dnewrelic.enable.java.8=true
-                  -Djava.ext.dirs=$PWD/.java-buildpack/container_security_provider:$PWD/.java-buildpack/open_jdk_jre/lib/ext -Djava.security.properties=$PWD/.java-buildpack/java_security/java.security $JAVA_OPTS" &&
-                  CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-3.13.0_RELEASE -totMemory=$MEMORY_LIMIT -loadedClasses=22355 -poolType=metaspace -stackThreads=250 -vmOptions="$JAVA_OPTS") &&
-                  echo JVM Memory Configuration: $CALCULATED_MEMORY && JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY" && MALLOC_ARENA_MAX=2 SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/.
-                  org.springframework.boot.loader.JarLauncher
-     状態   開始日時               cpu      メモリー           ディスク           詳細
-#0   実行   2018-11-29T07:09:09Z   212.0%   1G の中の 308.1M   1G の中の 181.3M
+$ cf start spring-music
 ```
-</details>
 
 #### New Relic インスタンスの確認
-
+`$ cf service <サービスインスタンス>` でサービスインスタンスの詳細情報を表示します。
 
 <details><summary>実行結果</summary>
 
@@ -345,14 +167,14 @@ syanagihara@pivotal.io として組織 syanagihara-org / スペース developmen
 プラン:                 lite
 説明:                   Manage and monitor your apps
 ドキュメンテーション:   http://docs.run.pivotal.io/marketplace/services/newrelic/
-ダッシュボード:         https://cloudfoundry.appdirect.com/api/custom/cloudfoundry/v2/sso/start?serviceUuid=76882e25-87bf-4e33-a3bc-709b878fa35b
+ダッシュボード:         https://cloudfoundry.appdirect.com/api/custom/cloudfoundry/v2/sso/start?serviceUuid=7c0cc140-aace-4f86-8b5d-493db16a2460
 
 サービス hello-newrelic からの最後の操作の状況を表示しています...
 
 状況:         create succeeded
 メッセージ:
-開始済み:     2018-11-29T06:44:50Z
-更新済み:     2018-11-29T06:44:50Z
+開始済み:     2018-11-29T12:09:28Z
+更新済み:     2018-11-29T12:09:28Z
 
 バインド済みアプリ:
 名前           バインディング名   状況               メッセージ
@@ -360,8 +182,34 @@ spring-music                      create succeeded
 ```
 </details>
 
+#### New Relic インスタンスのサービスキー作成
 
-### New Relic の利用
+![apm-create-key](images/apm-create-key.png)
+
+![apm-key](images/apm-key.png)
+
+![apm-key-succeed](images/apm-key-succeed.png)
+
+
+### New Relic APM へのアクセス
+New Relic のダッシュボードにアクセスし、アプリケーション情報を確認します。
+
+#### New Relic のダッシュボードにアクセス
+`$ cf service <サービスインスタンス>` で確認したサービスインスタンス情報にダッシュボード画面の URL 情報がありました。
+その URL にアクセスします。
+
+上記の例では、以下のように記述されていました。
+
+- `ダッシュボード:         https://cloudfoundry.appdirect.com/api/custom/cloudfoundry/v2/sso/start?serviceUuid=7c0cc140-aace-4f86-8b5d-493db16a2460`
+
+初回アクセス時は、以下のようなサービス・アグリーメントが表示されます。
+`I agree` をクリックしてください。
+
+![agreement](images/apm-agreement.png)
+
+New Relic APM 画面にバインドしておいたアプリケーションが表示されている事が確認できます。
+
+![newrelic-apm](images/newrelic-apm.png)
 
 #### データベース接続構成のモニタリング
 
