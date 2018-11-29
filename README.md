@@ -212,6 +212,161 @@ streamdata                    spring, creek*, brook*                            
 </details>
 
 サービス一覧に `newrelic` が見つかります。また、newrelic が提供しているプランは無償での利用可能な `lite` がある事が確認できます。
+このサービスインスタンスを作成して利用します。
+
+### New Relic インスタンスの準備
+
+#### New Relic インスタンスの作成
+
+```
+$ cf create-service newrelic lite <サービスインスタンス名>
+```
+
+<details><summary>実行結果</summary>
+
+```
+$ cf create-service newrelic lite hello-newrelic
+
+syanagihara@pivotal.io としてサービス・インスタンス hello-newrelic を組織 syanagihara-org / スペース development 内に作成しています...
+OK
+```
+</details>
+
+#### New Relic インスタンスとアプリケーションのバインド
+アプリケーションとサービスインスタンスのバインドには、以下のコマンドを使用します。
+
+```
+$ cf bind-service <アプリケーション名> <サービスインスタンスインスタンス名>
+```
+
+```
+$ cf bind-service spring-music hello-newrelic
+$ cf restage spring-music
+```
+
+<details><summary>実行結果</summary>
+
+```
+$ cf bind-service spring-music hello-newrelic
+
+syanagihara@pivotal.io としてサービス hello-newrelic を組織 syanagihara-org / スペース development 内のアプリ spring-music にバインドしています...
+OK
+
+$ cf restage spring-music
+
+syanagihara@pivotal.io として組織 syanagihara-org / スペース development 内のアプリ spring-music を再ステージングしています...
+
+アプリをステージングし、ログをトレースしています...
+   Downloading dotnet_core_buildpack_beta...
+   Downloading staticfile_buildpack...
+   Downloading java_buildpack...
+   Downloading ruby_buildpack...
+   Downloading dotnet_core_buildpack...
+   Downloaded ruby_buildpack
+   Downloading nodejs_buildpack...
+   Downloaded staticfile_buildpack
+   Downloading go_buildpack...
+   Downloaded java_buildpack
+   Downloading python_buildpack...
+   Downloaded dotnet_core_buildpack_beta
+   Downloading php_buildpack...
+   Downloaded nodejs_buildpack
+   Downloading binary_buildpack...
+   Downloaded dotnet_core_buildpack
+   Downloaded php_buildpack
+   Downloaded go_buildpack
+   Downloaded python_buildpack
+   Downloaded binary_buildpack
+   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 creating container for instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
+   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 successfully created container for instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
+   Downloading app package...
+   Downloading build artifacts cache...
+   Downloaded build artifacts cache (131B)
+   Downloaded app package (40.6M)
+   -----> Java Buildpack v4.16.1 (offline) | https://github.com/cloudfoundry/java-buildpack.git#41b8ff8
+   -----> Downloading Jvmkill Agent 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/jvmkill/trusty/x86_64/jvmkill-1.16.0_RELEASE.so (found in cache)
+   -----> Downloading Open Jdk JRE 1.8.0_192 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_192.tar.gz (found in cache)
+          Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.3s)
+          JVM DNS caching disabled in lieu of BOSH DNS caching
+   -----> Downloading Open JDK Like Memory Calculator 3.13.0_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-3.13.0_RELEASE.tar.gz (found in cache)
+          Loaded Classes: 19546, Threads: 250
+   -----> Downloading Client Certificate Mapper 1.8.0_RELEASE from https://java-buildpack.cloudfoundry.org/client-certificate-mapper/client-certificate-mapper-1.8.0_RELEASE.jar (found in cache)
+   -----> Downloading Container Security Provider 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-security-provider/container-security-provider-1.16.0_RELEASE.jar (found in cache)
+   -----> Downloading New Relic Agent 4.7.0 from https://download.run.pivotal.io/new-relic/new-relic-4.7.0.jar (found in cache)
+   -----> Downloading Spring Auto Reconfiguration 2.5.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-2.5.0_RELEASE.jar (found in cache)
+   Exit status 0
+   Uploading droplet, build artifacts cache...
+   Uploading build artifacts cache...
+   Uploading droplet...
+   Uploaded build artifacts cache (131B)
+   Uploaded droplet (96.5M)
+   Uploading complete
+   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 stopping instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
+   Cell 9dfbda41-f209-4912-ad47-521ee99dcfb3 destroying container for instance f33b8ffe-1b8f-4789-95b1-2ad1f977dbf9
+
+アプリが開始するのを待機しています...
+
+名前:                   spring-music
+要求された状態:         started
+経路:                   spring-music-accountable-kookaburra.cfapps.io
+最終アップロード日時:   Thu 29 Nov 16:08:26 JST 2018
+スタック:               cflinuxfs2
+ビルドパック:           client-certificate-mapper=1.8.0_RELEASE container-security-provider=1.16.0_RELEASE java-buildpack=v4.16.1-offline-https://github.com/cloudfoundry/java-buildpack.git#41b8ff8 java-main java-opts java-security
+                        jvmkill-agent=1.16.0_RELEASE new-rel...
+
+タイプ:           web
+インスタンス:     1/1
+メモリー使用量:   1024M
+開始コマンド:     JAVA_OPTS="-agentpath:$PWD/.java-buildpack/open_jdk_jre/bin/jvmkill-1.16.0_RELEASE=printHeapHistogram=1 -Djava.io.tmpdir=$TMPDIR -Dnewrelic.config.log_file_name=STDOUT
+                  -Dnewrelic.config.license_key=examplexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -Dnewrelic.config.app_name=spring-music -Dnewrelic.config.licenseKey=examplexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  -javaagent:$PWD/.java-buildpack/new_relic_agent/new_relic_agent-4.7.0.jar -Dnewrelic.home=$PWD/.java-buildpack/new_relic_agent -Dnewrelic.enable.java.8=true
+                  -Djava.ext.dirs=$PWD/.java-buildpack/container_security_provider:$PWD/.java-buildpack/open_jdk_jre/lib/ext -Djava.security.properties=$PWD/.java-buildpack/java_security/java.security $JAVA_OPTS" &&
+                  CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-3.13.0_RELEASE -totMemory=$MEMORY_LIMIT -loadedClasses=22355 -poolType=metaspace -stackThreads=250 -vmOptions="$JAVA_OPTS") &&
+                  echo JVM Memory Configuration: $CALCULATED_MEMORY && JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY" && MALLOC_ARENA_MAX=2 SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/.
+                  org.springframework.boot.loader.JarLauncher
+     状態   開始日時               cpu      メモリー           ディスク           詳細
+#0   実行   2018-11-29T07:09:09Z   212.0%   1G の中の 308.1M   1G の中の 181.3M
+```
+</details>
+
+#### New Relic インスタンスの確認
+
+
+<details><summary>実行結果</summary>
+
+```
+$ cf service hello-newrelic
+
+syanagihara@pivotal.io として組織 syanagihara-org / スペース development 内のサービス hello-newrelic の情報を表示しています...
+
+名前:                   hello-newrelic
+サービス:               newrelic
+タグ:
+プラン:                 lite
+説明:                   Manage and monitor your apps
+ドキュメンテーション:   http://docs.run.pivotal.io/marketplace/services/newrelic/
+ダッシュボード:         https://cloudfoundry.appdirect.com/api/custom/cloudfoundry/v2/sso/start?serviceUuid=76882e25-87bf-4e33-a3bc-709b878fa35b
+
+サービス hello-newrelic からの最後の操作の状況を表示しています...
+
+状況:         create succeeded
+メッセージ:
+開始済み:     2018-11-29T06:44:50Z
+更新済み:     2018-11-29T06:44:50Z
+
+バインド済みアプリ:
+名前           バインディング名   状況               メッセージ
+spring-music                      create succeeded
+```
+</details>
+
+
+### New Relic の利用
+
+#### データベース接続構成のモニタリング
+
+##### データベースインスタンスの作成
+##### データベースインスタンスとアプリケーションのバインド
 
 
 ## まとめ / 振り返り
