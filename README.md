@@ -163,6 +163,55 @@ API がファイルの処理を完了するのを待機しています...
 
 ![spring-music](images/spring-music.png)
 
+### Pivotal Services Marketplace の利用
+Pivotal Services Marketplace で提供されるサービスを使用します。
+
+#### サービスの一覧
+`cf marketplace` コマンドで利用可能なサービス一覧を表示します。
+
+<details><summary>実行結果</summary>
+
+```
+syanagihara@pivotal.io として組織 syanagihara-org / スペース development 内のマーケットプレイスからサービスを取得しています...
+OK
+
+サービス                      プラン                                                                                                説明
+Greenplum                     Free                                                                                                  Greenplum for Pivotal Cloud Foundry
+app-autoscaler                standard                                                                                              Scales bound applications in response to load
+blazemeter                    free-tier, basic1kmr*, pro5kmr*                                                                       Performance Testing Platform
+cedexisopenmix                opx_global*, openmix-gslb-with-fusion-feeds*                                                          Openmix Global Cloud and Data Center Load Balancer
+cleardb                       spark, boost*, amp*, shock*                                                                           Highly available MySQL for your Apps.
+cloudamqp                     lemur, tiger*, bunny*, rabbit*, panda*                                                                Managed HA RabbitMQ servers in the cloud
+cloudforge                    free, standard*, pro*                                                                                 Development Tools In The Cloud
+elephantsql                   turtle, panda*, hippo*, elephant*                                                                     PostgreSQL as a Service
+gluon                         free, indie*, business*, enterprise*                                                                  Mobile Synchronization and Cloud Integration
+loadimpact                    lifree, li100*, li500*, li1000*                                                                       Performance testing for DevOps
+memcachedcloud                100mb*, 250mb*, 500mb*, 1gb*, 2-5gb*, 5gb*, 30mb                                                      Enterprise-Class Memcached for Developers
+memcachier                    dev, 100*, 250*, 500*, 1000*, 2000*, 5000*, 7500*, 10000*, 20000*, 50000*, 100000*                    The easiest, most advanced memcache.
+metrics-forwarder             unlimited, 4x4000, 60x60000                                                                           Custom metrics service
+mlab                          sandbox                                                                                               Fully managed MongoDB-as-a-Service
+newrelic                      lite                                                                                                  Manage and monitor your apps
+p-circuit-breaker-dashboard   standard*, trial                                                                                      Circuit Breaker Dashboard for Spring Cloud Applications
+p-config-server               standard*, trial                                                                                      Config Server for Spring Cloud Applications
+p-service-registry            standard*, trial                                                                                      Service Registry for Spring Cloud Applications
+pubnub                        free                                                                                                  Build Realtime Apps that Scale
+quotaguard                    starter, spike*, micro*, medium*, large*, enterprise*, premium*, deluxe*, super*, mega*, unlimited*   High Availability Enterprise-Ready Static IPs
+rediscloud                    100mb*, 250mb*, 500mb*, 1gb*, 2-5gb*, 5gb*, 10gb*, 50gb*, 30mb                                        Enterprise-Class Redis for Developers
+scheduler-for-pcf             standard                                                                                              Scheduler service
+searchify                     small*, plus*, pro*                                                                                   Custom search you control
+searchly                      small*, micro*, professional*, advanced*, starter, business*, enterprise*                             Search Made Simple. Powered-by Elasticsearch
+sendgrid                      free, bronze*, silver*                                                                                Email Delivery. Simplified.
+ssl                           basic*                                                                                                Upload your SSL certificate for your app(s) on your custom domain
+stream                        free, starter*, growth*, pro*                                                                         Timelines, Build Scalable Newsfeeds & Activity Streams
+streamdata                    spring, creek*, brook*                                                                                Future-proof your APIs !
+
+* これらのサービス・プランには関連コストが伴います。 サービス・インスタンスを作成すると、このコストが発生します。
+
+ヒント:  特定のサービスの個々のプランの説明を表示するには、'cf marketplace -s SERVICE' を使用します。
+```
+</details>
+
+サービス一覧に `newrelic` が見つかります。また、newrelic が提供しているプランは無償での利用可能な `lite` がある事が確認できます。
 
 
 ## まとめ / 振り返り
