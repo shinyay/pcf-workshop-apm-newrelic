@@ -211,29 +211,74 @@ New Relic APM 画面にバインドしておいたアプリケーションが表
 
 ![newrelic-apm](images/newrelic-apm.png)
 
-### 
+### New Relic APM の操作
+New Relic で確認できる情報を確認します。
 
+まず、モニタリングしている情報を表示したいアプリケーションをクリックします。
 ![](images/apm-info.png)
+
+左部メニューから各種情報を表示できます。
+
+表示する情報は大きく以下のカテゴリに分類されます。
+
+- モニタリング
+- イベント
+- レポート
+
+#### 概要情報
+左部メニューに表示される **Overview** を選択します。
+
+トランザクション状況やスループットなどの各種情報が一覧表示されます。
 
 ![](images/apm-overview.png)
 ![](images/apm-overview2.png)
 
+#### サービスマップ
+アプリケーションが利用する外部システムや連携するアプリケーションなどの関係を可視化します。
+
+今回の例では、組み込みの `H2 Database` を使用している事が確認できます。
 ![](images/apm-servicemap.png)
+
+
+#### トランザクション
+アプリケーションへの各種リクエストの割合やスループットをグラフ表示します。
 
 ![](images/apm-transaction.png)
 
+
+#### データベース
+アプリケーションが利用しているデータベースに対するリクエストの割合や処理にかかった時間をグラフ表示します。
+
 ![](images/apm-database.png)
 
+
+#### 外部サービス
+外部連携している宛先や呼び出し回数、またその外部サービスからのレスポンスタイムをグラフ表示します。
+
 ![](images/apm-external.png)
+
+#### JVM情報
+アプリケーションが稼動している環境の JVM 情報を以下のような観点で表示します。
+
+- ヒープ使用情報
+- Eden / Survivor 領域の使用情報
+- Old 領域
+- 非ヒープ(ネイティブ)領域
+- GC 時間
 
 ![](images/apm-jvm1.png)
 ![](images/apm-jvm2.png)
 ![](images/apm-jvm3.png)
 
+#### エラーイベント
+アプリケーションで発生したエラーイベントを表示します。
+
 ![](images/apm-events-error.png)
 
-![](images/apm-reports-scalability.png)
+#### スケーラビリティ分析レポート
+アプリの負荷と比較した応答時間、データベース利用率、およびCPU使用率を散布図で表示します。
 
+![](images/apm-reports-scalability.png)
 
 
 #### データベース接続構成のモニタリング
@@ -259,3 +304,5 @@ $ cf restage spring-music
 
 ### 参考
 - [Monitor and Measure Your Way to Successful Digital Transformation with Pivotal and New Relic](https://blog.newrelic.com/product-news/pivotal-springone-monitoring-digital-transformation/)
+
+- [New Relic APM Document](https://newrelic.degica.com/docs/apm)
