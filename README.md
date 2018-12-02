@@ -312,16 +312,27 @@ PostgreSQL インスタンスを作成します。
 $ cf create-service elephantsql turtle hello-elephant
 ```
 ##### データベースインスタンスとアプリケーションのバインド
+PostgreSQL インスタンスとアプリケーションをバインドし、外部のデータベースを使用できるようにします。
+バインドするには、以下のコマンドを使用します。また、バインド後に再起動します。
 
 ```
 $ cf bind-service spring-music hello-elephant
 $ cf restage spring-music
 ```
+
+##### サービスマップ
+アプリケーションの構成が、PostgreSQL との接続に変更されている事が確認できます。
+
 ![](images/apm-postgres.png)
 ![](images/apm-postgres2.png)
 
 
 ## まとめ / 振り返り
+New Relic APM でアプリケーションのモニタリングを行う際に、特にアプリケーション側に New Relic のエージェントモジュールの導入を行っていません。
+
+これは、Java アプリケーションのビルド時に利用される **Java Buildpack** に New Relic の構成を自動で行うフレームワークが含まれているため、開発者は特にエージェントの構成を意識する事なく、New Relic を利用する事ができます。
+
+- [New Relic Agent Framework](https://github.com/cloudfoundry/java-buildpack/blob/master/docs/framework-new_relic_agent.md)
 
 ### 参考
 - [Monitor and Measure Your Way to Successful Digital Transformation with Pivotal and New Relic](https://blog.newrelic.com/product-news/pivotal-springone-monitoring-digital-transformation/)
