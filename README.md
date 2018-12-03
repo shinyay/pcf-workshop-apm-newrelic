@@ -186,16 +186,16 @@ spring-music                      create succeeded
 </details>
 
 ### New Relic インスタンスのサービスキー作成
-作成したサービスインスタンスにの New Relic のライセンスキー情報を反映します。
-Apps Manager 上で New Relic のサービスインスタンスを見つけ、サービスキーを作成する事でライセンスキーを反映することができます。
+作成したサービスインスタンスにの New Relic のライセンスキー情報を反映します。
+Apps Manager 上で New Relic のサービスインスタンスを見つけ、サービスキーを作成する事でライセンスキーを反映することができます。
 
 #### Apps Manager へアクセス
 まず、ブラウザから Apps Manager にアクセスします。
 
 - [Apps Manager - https://console.run.pivotal.io](https://console.run.pivotal.io)
 
-使用しているスペース (ここでは `development`) を選択し `Service` タブをクリックします。
-すると、以下のように サービス一覧の中に New Relic のサービスインスタンスが確認できます。
+使用しているスペース (ここでは `development`) を選択し `Service` タブをクリックします。
+すると、以下のように サービス一覧の中に New Relic のサービスインスタンスが確認できます。
 
 ![service-newrelic](images/pws-service.png)
 
@@ -312,8 +312,8 @@ PostgreSQL インスタンスを作成します。
 $ cf create-service elephantsql turtle hello-elephant
 ```
 ##### データベースインスタンスとアプリケーションのバインド
-PostgreSQL インスタンスとアプリケーションをバインドし、外部のデータベースを使用できるようにします。
-バインドするには、以下のコマンドを使用します。また、バインド後に再起動します。
+PostgreSQL インスタンスとアプリケーションをバインドし、外部のデータベースを使用できるようにします。
+バインドするには、以下のコマンドを使用します。また、バインド後に再起動します。
 
 ```
 $ cf bind-service spring-music hello-elephant
@@ -330,7 +330,7 @@ $ cf restage spring-music
 ## まとめ / 振り返り
 New Relic APM でアプリケーションのモニタリングを行う際に、特にアプリケーション側に New Relic のエージェントモジュールの導入を行っていません。
 
-これは、Java アプリケーションのビルド時に利用される **Java Buildpack** に New Relic の構成を自動で行うフレームワークが含まれているため、開発者は特にエージェントの構成を意識する事なく、New Relic を利用する事ができます。
+これは、Java アプリケーションのビルド時に利用される **Java Buildpack** に New Relic の構成を自動で行うフレームワークが含まれているため、開発者は特にエージェントの構成を意識する事なく、New Relic を利用する事ができます。
 
 - [New Relic Agent Framework](https://github.com/cloudfoundry/java-buildpack/blob/master/docs/framework-new_relic_agent.md)
 
